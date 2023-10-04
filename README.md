@@ -5,6 +5,7 @@
 This document is designed to showcase the technical implementation of the various services to effectively migrate on-prem environment to Amazon Web Services(AWS) to improve its security posture. The documents put emphasizes several and how they can be mitigated using various AWS services. Once the application migrates to the AWS cloud, it will be highly secure, scalable, resilient, and compliant.
 
 Major problems in the existing application - 
+
 1.	Improper Account Authorization
 2.	Highly vulnerable to DDoS attacks
 3.	No Patching Strategy
@@ -14,19 +15,21 @@ Major problems in the existing application -
 7.	Non-Compliant application
 8.	Insecure coding practices 
 
-Various tools and services leveraged to improve the security posture
-Account Authorization	AWS Identity and Access Management
-DDoS attacks prevention	Amazon Shield Advanced, Route 53, AWS WAF
-Patch Management	AWS Patch Manager
-Fast Streaming, Downloads and Order Processing	AWS CloudFront and S3 bucket
-Backup	AWS Backup Service and AWS S3 Glacier
-Data protection	Amazon Macie
-Compliant	PCI and PII Compliant
-Secure coding practices 	AWS CodeGuru
+Various tools and services leveraged to improve the security posture - 
 
-New Architecture Proposal 
+1. For Account Authorization, we will recommend	AWS Identity and Access Management.
+2. For DDoS attacks prevention, we will	recommend Amazon Shield Advanced, Route 53, AWS WAF.
+3. For Patch Management, we will recommend AWS Patch Manager.
+4. For Fast Streaming, Downloads and Order Processing, we will recommend AWS CloudFront and S3 bucket.
+4. For Backup, we will recommend AWS Backup Service and AWS S3 Glacier.
+5. For Data protection, we will recommend Amazon Macie.
+6. For Compliant, we will recommend PCI and PII Compliant.
+7. For Secure coding practices, we will recommend AWS CodeGuru.
+
+**New Architecture Proposal **
+
 The below-advanced architecture level diagram shows how the on-prem infrastructure looks after it is successfully migrated to the AWS cloud.     
-              
+
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/be43520f-6860-47d9-9a33-f1de671a9aed)
 
 
