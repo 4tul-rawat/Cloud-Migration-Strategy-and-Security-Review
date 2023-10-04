@@ -1,6 +1,6 @@
 # Cloud Migration Strategy and Security Review
 
-#Introduction
+**Introduction**
 
 This document is designed to showcase the technical implementation of the various services to effectively migrate on-prem environment to Amazon Web Services(AWS) to improve its security posture. The documents put emphasizes several and how they can be mitigated using various AWS services. Once the application migrates to the AWS cloud, it will be highly secure, scalable, resilient, and compliant.
 
