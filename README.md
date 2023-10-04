@@ -32,23 +32,23 @@ The below-advanced architecture level diagram shows how the on-prem infrastructu
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/be43520f-6860-47d9-9a33-f1de671a9aed)
 
+**Migration Steps **
 
+1. Discovery - Prepare both existing and future system architecture. Create a migration inventory based on all the functional and non-functional requirements.
+2. Design - Prepare a migration strategy for every component followed by a high-level migration plan.
+3. Development - Make a list of step-by-step migration plans and test plans, Automation scripts, and ready-to-deploy applications in CloudFormation.
+4. Testing and refinement - Create testing reports and redefine the automation scripts, migration plans and testing plans.
+5. Implementation - Deploy all the components in the AWS Cloud.
 
+**Issue 1 – Account Authorization**
 
-Migration Steps 
-Discovery	Prepare both existing and future system architecture 
-Create a migration inventory based on all the functional and non-functional requirements
-Design	Prepare a migration strategy for every component followed by a high-level migration plan.
-Development	Make a list of step-by-step migration plans and test plans, Automation scripts, and ready-to-deploy applications in CloudFormation,
-Testing and refinement	Create testing reports and redefine the automation scripts, migration plans and testing plans.
-Implementation	Deploy all the components in the AWS Cloud.
-
-Issue 1 – Account Authorization
 Account Authorization is one of the most critical aspects of security. We can use the web service AWS Identity and Access Management (IAM) to securely manage access to AWS resources. We will be able to manage permissions that govern which AWS resources users can access from a single location with IAM.
-Recommendation
+
+**Recommendation**
+
 Currently, the firm does not have an Identity and Access Management service and every user has the access to run privileged commands on the web server which is very hazardous for the firm. We are going to leverage Role-based access control, the principle of least privilege, MFA, and password management policy. 
 
-Roles and Responsibilities
+**Roles and Responsibilities**
 
 Roster Name - 	Roles - 	Policies
 Chuck -	Founder of the firm - Read Only Access
@@ -58,13 +58,12 @@ Hunter - Chief Information Officer - Power User Access (This role can be modifie
 Sydney - Web Developer - Power User Access(This role can be modified based on the access a person)
 Tim - System Administrator - System Administrator
 
+**Implementation **
 
-
-Implementation 
-
-Setting up password management:
+**Setting up password management:**
 Credential Management allows the root user to establish parameters for the user to construct a password, thus preventing the user from creating a weak password and making it more difficult for the attacker. 
-     Creating a custom password policy:
+
+Creating a custom password policy:
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/4ec19bcb-4155-479b-92dc-e5eb56834192)
 
@@ -77,7 +76,8 @@ Credential Management allows the root user to establish parameters for the user 
   
 •	After setting the policies, select ‘Save changes’ and then click on ‘set custom’ to finally impose those policies.
 
-MFA (Multi-Factor Authentication)
+**MFA (Multi-Factor Authentication)**
+
 MFA (Multi-Factor Authentication) adds an extra layer of security by allowing users to enter a security code to successfully authenticate to the application.
 To setup MFA for another user-  
 •	Navigate to the IAM console and then select Users.
@@ -94,7 +94,7 @@ To setup MFA for another user-
 
 •	Note: The same process can be followed by the root user to create an MFA for himself/herself.
 
-Other Points to consider while configuring IAM 
+**Other Points to consider while configuring IAM **
 
 •	Implement Role-based access control. Provide only limited access to the users that they need to perform their jobs. Create different policies based on the different privileged users and assign those policies to a group. Follow the ‘principle of least privilege.’
 •	Only provide high-privilege access to a minimum number of users.
@@ -106,30 +106,24 @@ Other Points to consider while configuring IAM
 •	Implement a strong password policy that includes a password rotation policy.
 •	Modify access control policies based on conditions for accessing your cloud resources.
 
-Issue 2 - DDOS Resiliency
+**Issue 2 - DDOS Resiliency**
 A DDOS also known as Denial A Denial of Service (DoS) attack is a malicious attempt to make an application unavailable to users by inundating it with a large volume of requests or by conducting infrastructure and application layer attacks.
 
-Recommendation
+**Recommendation**
 As we already know that the application is highly vulnerable to DDOS attacks and has also experienced multiple compromised DDOS attempts from a rival dojo run by Daniel LaRusso who is a persistent threat to the firm's Operations. AWS shield advanced, AWS WAF and AWS Route 53 are used to guard our application from attacks targeted at different layers. These services act as entry-level checks and protect our resources from DDoS attacks.  
 
-Amazon Route 53 
+**Amazon Route 53** 
 Amazon Route 53 is configured by registering a domain with Amazon Route 53 and setting up Route 53 to respond to DNS queries that resolve to a static website. 
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/4c2b663f-6d17-44c6-8cfb-a6ae83620c15)
 
+**Implementation **
 
-
-
-
-
-Implementation 
 The below diagram summarizes how AWS Shield Standard, Amazon Route 53 and AWS WAF work in tandem to protect the application from DDoS attacks. 
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/e70555ed-052c-4dd1-bfad-89f0333489f0)
 
- 
-
-Points to consider while configuring Amazon Route 53
+**Points to consider while configuring Amazon Route 53**
 •	Make use of data plane functions such as health checks and Application recovery controller for DNS failover and app recovery.
 •	The TTL values for DNS records are important. The recommended range is 60 to 172800 seconds.
 •	Make use of CNAME records to point one domain to another. 
@@ -137,56 +131,49 @@ Points to consider while configuring Amazon Route 53
 •	Consider the use of DNS delegation, DNS change propagation, and size of DNS response. 
 
 
-
-
-
-AWS WAF
+**AWS WAF**
 AWS WAF is configured by creating Web ACL for the CloudFront distribution. Once the rules are defined in the ACL, filtering the traffic for HTTP and HTTPS requests will be made easier by the AWS WAF.
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/e02748bf-bb11-40ce-be2b-3427a1fd3d41)
 
-Implementation 
+**Implementation **
 The below diagram summarizes how AWS Shield Standard, Amazon Route 53 and AWS WAF work in tandem to protect the application from DDoS attacks. 
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/bbf9c297-4b5a-45a8-afa0-e00f8af613ad)
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/a73a2a79-bb94-4042-86db-90c73231ecf0)
 
-
-
- 
-Points to consider while configuring AWS WAF
+**Points to consider while configuring AWS WAF**
 •	Implement enforcement policy for the edge network layer.
 •	Implement application layer policy enforcement in the load balancer
 •	Make use of AWS Managed Rules to implement application load balancer origin and edge network.
 •	Implement rules for public and private application load balancers using AWS Managed WAF 
 •	Set up CloudWatch Alarms and lambda responders for logging.
 
-AWS Shield Advanced
+**AWS Shield Advanced**
 AWS Shield Advanced can be configured by subscribing to Shield Advanced in AWS. This feature can be used to protect resources such as, Global Accelerator, Amazon EC2 Elastic IP addresses, Route 53, Elastic Load Balancing (ELB) load balancers, and CloudFront distributions.
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/e2910fa1-c129-48be-b4e6-d4877938a862)
 
-
-Implementation 
+**Implementation** 
 The below diagram summarizes how AWS Shield Standard, Amazon Route 53 and AWS WAF work in tandem to protect the application from DDoS attacks. 
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/7ef8c92a-51fb-4954-b5b8-989e98389b60)
 
  
-Points to consider while configuring AWS Advanced Shield
+**Points to consider while configuring AWS Advanced Shield**
 •	Integration with AWS WAF provides additional support against application layer DDoS.
 •	Integration with Amazon Route 53 health checks to inform event detection and mitigation.
 •	Clubbing of the intended resources into groups for enhanced detection and mitigation of the complete group.
 •	Make use of centralized management of Advanced Shield protections by AWS Firewall Manager.
 •	Make use AWS Shield Response Team (SRT) whenever necessary.
 
-Issue – 3: Patch Management
+**Issue – 3: Patch Management**
 Patching is one of the indispensable security strategies to mitigate errors (also referred to as “vulnerabilities” or “bugs”) in software. Any loopholes or security flaws can keep the application open to numerous attacks by external threats.
 
-Recommendations
+**Recommendations**
 Once deployed in the AWS cloud, we can leverage “AWS system manager,” which is a service to deploy security patches in the software and operating systems. This service will make use of patch baseline, patch group and maintenance window to regularly update all the firm's resources.
 
-Implementation
+**Implementation**
 •	Maintain asset inventory containing data about various resources such as Virtual Machines, Databases, and Machine Configurations.
 •	Define a patch group and maintenance window based on different environments (Development, Production, Testing) and Operating Systems.
 •	Create a patch baseline (approved patches) for an OS.
@@ -196,24 +183,20 @@ Implementation
 •	Prepare a dashboard insight and patch compliance report using asset inventory data to cater for the compliance requirement.
 
  
-
- 
-
-Issue 4 - Optimize Slow Streaming, Downloads and Order Processing
+**Issue 4 - Optimize Slow Streaming, Downloads and Order Processing**
 Slow downloads, streaming, and order processing are aggravating, and they not only waste your time but also negatively impact the customer experience. This could also result in potential clients switching to a rival, costing the company business.
-Recommendations
-The firm's customers have been complaining about slow streaming, downloads, and order processing. We need to implement a better strategy to cater for the needs of users. CloudFront distribution and S3 buckets would come in handy for us to resolve this issue and also provide a better application experience to our loyal customers.
+Recommendations. The firm's customers have been complaining about slow streaming, downloads, and order processing. We need to implement a better strategy to cater for the needs of users. CloudFront distribution and S3 buckets would come in handy for us to resolve this issue and also provide a better application experience to our loyal customers.
 
-CloudFront Distribution
+**CloudFront Distribution**
 Our web content can be delivered more quickly and the load on our origin servers will be automatically reduced when Amazon CloudFront is set up with Amazon Simple Storage Service (S3).
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/69e869b1-701c-4e61-98ce-0aac4b89bf20)
 
  
-Implementation
+**Implementation**
 To do this, we can utilize Amazon CloudFormation and launch an S3 bucket at scale, store our static files there, and then distribute those files to our users over the CloudFront CDN (CDN). In order to decrease latency and offload capacity from your origin, the CloudFront edge locations will cache and distribute our content closer to your users. Our content and application will be more secure and efficient as a result of CloudFront's restriction of access to our S3 bucket only to just CloudFront endpoints. 
  
-Points to consider while configuring AWS CloudFront Distribution
+**Points to consider while configuring AWS CloudFront Distribution**
 •	Ensure that AWS Cloudfront web distributions are enabled with automatic object compression.
 •	Verify that CloudFront distribution's geo-restriction feature is activated.
 •	Check that the AWS CloudFront CDN solution is being used for quick and safe delivery of web content.
@@ -223,15 +206,13 @@ Points to consider while configuring AWS CloudFront Distribution
 •	Verify if distributions of AWS CloudFront employ enhanced security protocols for HTTPS connections.
 •	Ensure encrypted communication between a CloudFront distribution and the origin.
 
-Issue 5 – Backup Management
+**Issue 5 – Backup Management**
 A backup strategy is planned to centralize and computerize the backup of resources across AWS services. It is one of the quintessential parts of maintaining a good security posture. With AWS backup, we can decide on backup policies, and backup retention periods, and it saves a lot of time during a cyber-attack.
 
-Recommendation
+**Recommendation**
 The application does not have a backup strategy which helps in restoring information, ensure business continuity, and defend against devastating IT crises. It is highly likely that during a cyber-attack, an attack can completely erase data resulting in the loss of business. We are going to leverage the AWS Backup service and AWS S3 Glacier to build and store a backup plan and use those backups in case of any emergency. Through backup, the firm can restore their on-demand content and customer data at any point in time without affecting business continuity.
 
-
- 
-Implementation
+**Implementation**
   ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/25207f9d-ddcf-43df-940f-c034acaa34d6)
 AWS Backup and AWS S3 Glacier
 A better backup strategy can be made by combining AWS Backup with S3 Glacier. Both live streaming and on-demand training sessions are available through the app. As a result, S3 Glacier is utilized as a backup for relational databases in a virtual private cloud to store training videos and other material that can be accessed immediately. Additionally, the AWS backup service offers a routine for automatically backing up all the services accessible through the AWS cloud infrastructure.
@@ -239,8 +220,7 @@ A better backup strategy can be made by combining AWS Backup with S3 Glacier. Bo
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/dadcd29c-5fa6-41e5-ab81-00af954d8da4)
 
 
- 
-Points to consider while configuring AWS Backup and AWS S3 Glacier
+**Points to consider while configuring AWS Backup and AWS S3 Glacier**
 •	Define policies on what, when and how to take backup. i.e., Backup of on-demand content, Customer information.
 •	Ensure to have encryption on the backups. The encryption key could be either Platform or Customer managed.
 •	Perform full backups followed by periodic incremental backups. Helps in minimizing storage costs as well.
@@ -250,25 +230,25 @@ Points to consider while configuring AWS Backup and AWS S3 Glacier
 •	Backups can be connected with other tools to manage metrics, examine dashboards, and monitor workloads.
 •	Use Audit Manager to check that our AWS Backup policies comply with the various established controls.
 
-Issue 6 – PII Protection and PCI Compliance 
+**Issue 6 – PII Protection and PCI Compliance **
 Personal Identifiable Information and Credit Card information is one of the most indispensable data inside an application. Customers entrust us with their personal information, thus we have a duty to secure it at all costs. Individuals may suffer serious consequences as a result of the loss of PII, including identity theft or other illicit uses of the data.
 
-Recommendation
+**Recommendation**
 The application is processing credit card data and also stores customer PII (name, phone, email, address, and additional details about the customer). We need to ensure that all Personal Identifiable Information and Credit Card information is stored safely either in rest or transit. For this purpose, we will leverage Amazon Macie to discover and protect our sensitive data.
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/763000f5-dc00-46d4-a81b-0538d53be44b)
 
-Amazon Macie
+**Amazon Macie**
 The Simple Storage Service (Amazon S3) data estate is protected by Amazon Macie, which automatically assesses and keeps track of the buckets' security and access control. Macie creates a finding for you to examine and correct as necessary if it notices a potential problem with the security or privacy of your data, such as a bucket that becomes publicly accessible. 
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/9d967209-7b42-4a16-bafc-89a0834bce8d)
 
-Implementation
+**Implementation**
 Create access permissions to the Amazon Macie console and API activities first. When everything is finished, Macie will immediately start keeping an accurate inventory of all of our S3 buckets in the current Region.
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/3bb82218-e6eb-4c28-a653-26df13f26d4a)
 
-Points to consider while configuring Amazon Macie
+**Points to consider while configuring Amazon Macie**
 •	Investigating unsuccessful Macie scans of S3 items
 •	Ensuring S3 and KMS resource policy compliance
 •	Enabling the Macie service-linked IAM role to scan S3 objects.
@@ -281,7 +261,7 @@ Points to consider while configuring Amazon Macie
 •	In the Macie settings, activate the Auto-enable option.
 
 
-PCI Compliance
+**PCI Compliance**
 The PCI Security Standards Council is in charge of managing the Payment Card Industry Data Security Standard (PCI DSS), a private information security standard and AWS helps in protecting credit card information using PCI compliance.
 Recommendation
 The firm has not been compliant in their on-prem environment however AWS has a feature that can be implemented to make the application PCI compliant. 
@@ -300,10 +280,10 @@ b.	Then, visit the details page of control by selecting the control you wish to 
 c.	Follow the link for Remediation instructions, then adhere to the detailed remediation instructions for each failed discovery.
 
 
-Issue 7 – Insecure Coding Practice
+**Issue 7 – Insecure Coding Practice**
 An essential part of maintaining an application's security is application security testing. The organization can automate the integration of security at each stage of the software development lifecycle, from initial design to integration, testing, deployment, and software delivery, by integrating a security plugin in the pipeline.
 
-Recommendation
+**Recommendation**
 We are going to leverage AWS CodeGuru to identify the vulnerabilities during the initial stages of the software development process and fix those issues before moving into production.
 Implementation 
 Integration of Amazon CodeGuru reviewer (CLI) with our Jenkins Continuous Integration & Continuous Delivery (CI/CD) pipeline is very straight forward. CodeGuru Reviewer combines machine learning (ML) and automated reasoning to spot typical coding errors as well as security flaws and wasteful uses of AWS APIs and SDKs. Additionally, we have our source code on Github where we may integrate CodeGuru reviewer.
@@ -312,17 +292,14 @@ In the build stage of the pipeline, we configure the build tool to perform the c
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/4ede9c6b-4ba3-4694-8281-a03d7a4e1ebc)
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/9de1585b-da54-41b7-859e-c0f3382d4fc7)
 
- Creating a Jenkins Pipeline job
- 
- 
-
+Creating a Jenkins Pipeline job
 Reviewing the CodeGuru Reviewer recommendations
 When the build is complete, choosing Jenkins to produce a history for the most recent build job will allow us to see the CodeGuru Reviewer review results. Browse to Workspace output after that. There are HTML and JSON formats for the output. 
 
 ![image](https://github.com/4tul-rawat/Consulting-in-Cloud-Security/assets/130515502/0190e117-9923-4619-8afa-b2fb43157e2f)
 
 
-References
+**References**
 Amazon CodeGuru. (n.d.). Retrieved from Amazon AWS: https://aws.amazon.com/blogs/devops/automating-detection-of-security-vulnerabilities-and-bugs-in-ci-cd-pipelines-using-amazon-codeguru-reviewer-cli/
 AWS WAF. (n.d.). Retrieved from Amazon AWS: https://aws.amazon.com/blogs/security/defense-in-depth-using-aws-managed-rules-for-aws-waf-part-1/ 
 CloudFront. (n.d.). Retrieved from Amazon AWS: https://aws.amazon.com/cloudfront/getting-started/S3/ 
